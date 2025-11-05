@@ -17,6 +17,22 @@ class LaloSection extends HTMLElement {
     `;
   }
 
+  static get template() {
+    const template = document.createElement("template");
+
+    template.innerHTML = /* html */ `
+      <style>
+        ${LaloSection.styles}
+      </style>
+      <section>
+        <h2>Lalo's Section</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </section>
+    `;
+
+    return template;
+  }
+
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -29,15 +45,9 @@ class LaloSection extends HTMLElement {
   }
 
   #render() {
-    this.shadowRoot.innerHTML = /* html */ `
-      <style>
-        ${LaloSection.styles}
-      </style>
-      <section>
-        <h2>Lalo's Section</h2>
-        <p>Lorem ipsum dolor sit amet.</p>
-      </section>
-    `;
+    const laloSection = LaloSection.template.content.cloneNode(true);
+
+    this.shadowRoot.appendChild(laloSection);
   }
 }
 
