@@ -23,6 +23,11 @@ class LaloSection extends HTMLElement {
     this.#render();
   }
 
+  changeParagraph(text) {
+    const paragraph = this.shadowRoot.querySelector("p");
+    paragraph.textContent = text;
+  }
+
   #render() {
     this.shadowRoot.innerHTML = /* html */ `
       <style>
@@ -37,3 +42,9 @@ class LaloSection extends HTMLElement {
 }
 
 customElements.define("lalo-section", LaloSection);
+
+const laloSection = document.body.querySelector("lalo-section");
+
+setTimeout(() => {
+  laloSection.changeParagraph("Pues esta es mi sección.");
+}, 5000);
